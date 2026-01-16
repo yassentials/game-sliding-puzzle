@@ -2,44 +2,48 @@ name: Deploy to Github Pages
 
 on:
   push:
-    branches: 
-      - master
+    branches:
       - main
-  workflow_dispatch: 
+      - master
+  pull_request:
+    branches: 
+      - main
+      - master
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@v3
 
-      # - name: Build static files
-        # id: build
-        # run: |
-        #   <Not provided for brevity>
-        #   At a minimum this step should build the static files of your site
-        #   <Not provided for brevity>
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version-file: ".bun-version"
 
-      - name: Upload static files as artifact
-        id: deployment
-        uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
-        with:
-          path: .
+    - name: Build
+      run: |
+        bun i
+        bun run build:github
 
+    - name: Upload static files as artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: ./dist
+      
   deploy:
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
+    needs: build
+    runs-on: ubuntu-latest
 
-    # Deploy to the github-pages environment
+    permissions:
+      pages: write
+      id-token: write
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    # Specify runner + deployment step
-    runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 # or specific "vX.X.X" version tag for this action
+        uses: actions/deploy-pages@v4
