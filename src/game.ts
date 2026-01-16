@@ -86,14 +86,14 @@ export default class Game extends EventTarget {
   }
 
   private registerEvents(): void {
-    this.addEventListener(MouseLeftClickEvent.name, (event: Event) => {
+    this.addEventListener(MouseLeftClickEvent.EVENT_NAME, (event: Event) => {
       const evt = event as MouseLeftClickEvent;
       const { x, y } = evt.detail;
 
       this.clickPosition.position = { x, y };
     });
 
-    this.addEventListener(GameResultWinEvent.name, () => {
+    this.addEventListener(GameResultWinEvent.EVENT_NAME, () => {
       this.onExit();
     });
 

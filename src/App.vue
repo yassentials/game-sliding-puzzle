@@ -50,7 +50,7 @@ onMounted(async () => {
     game.dispatchEvent(new MouseLeftClickEvent(e.offsetX, e.offsetY));
   });
 
-  game.addEventListener(GameResultWinEvent.name, () => {
+  game.addEventListener(GameResultWinEvent.EVENT_NAME, () => {
     win.value = true;
   });
 
