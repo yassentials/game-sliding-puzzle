@@ -139,7 +139,10 @@ export default class Game extends EventTarget {
 
       const val = this.blocks[row]?.[col];
 
-      if (typeof val === "undefined" || typeof val === "number" && val >= emptyIndex) {
+      if (
+        typeof val === "undefined" ||
+        (typeof val === "number" && val >= emptyIndex)
+      ) {
         break clickAction;
       }
 

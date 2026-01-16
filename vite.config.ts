@@ -1,6 +1,6 @@
 import tailwindcss from "@tailwindcss/vite";
 import vue from "@vitejs/plugin-vue";
-import { defineConfig, type ConfigEnv } from "vite";
+import { type ConfigEnv, defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig((env: ConfigEnv) => ({
