@@ -5,5 +5,5 @@ import { defineConfig, type ConfigEnv } from "vite";
 // https://vite.dev/config/
 export default defineConfig((env: ConfigEnv) => ({
   plugins: [vue(), tailwindcss()],
-  base: env.mode === "github" ? "/game-breakout" : "/",
+  base: env.mode === "github" ? "/game-sliding-puzzle" : "/",
 }));
