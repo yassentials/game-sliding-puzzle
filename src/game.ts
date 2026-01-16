@@ -1,4 +1,5 @@
-/** biome-ignore-all lint/suspicious/noConfusingLabels: c */
+/** biome-ignore-all lint/suspicious/noConfusingLabels: false */
+/** biome-ignore-all lint/style/noNonNullAssertion: false */
 import { Result } from "./enums";
 import { GameResultWinEvent } from "./events/game";
 import { MouseLeftClickEvent } from "./events/input";
@@ -138,28 +139,28 @@ export default class Game extends EventTarget {
 
       const val = this.blocks[row]?.[col];
 
-      if (typeof val === "number" && val >= emptyIndex) {
+      if (typeof val === "undefined" || typeof val === "number" && val >= emptyIndex) {
         break clickAction;
       }
 
       if (condition.emptyBelow) {
-        this.blocks[row + 1][col] = val;
-        this.blocks[row][col] = emptyIndex;
+        this.blocks[row + 1]![col] = val;
+        this.blocks[row]![col] = emptyIndex;
       }
 
       if (condition.emptyAbove) {
-        this.blocks[row - 1][col] = val;
-        this.blocks[row][col] = emptyIndex;
+        this.blocks[row - 1]![col] = val;
+        this.blocks[row]![col] = emptyIndex;
       }
 
       if (condition.emptyLeft) {
-        this.blocks[row][col - 1] = val;
-        this.blocks[row][col] = emptyIndex;
+        this.blocks[row]![col - 1] = val;
+        this.blocks[row]![col] = emptyIndex;
       }
 
       if (condition.emptyRight) {
-        this.blocks[row][col + 1] = val;
-        this.blocks[row][col] = emptyIndex;
+        this.blocks[row]![col + 1] = val;
+        this.blocks[row]![col] = emptyIndex;
       }
     }
 
