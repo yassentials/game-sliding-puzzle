@@ -1,6 +1,6 @@
-FROM oven/bun:1-debian
+FROM node:25-trixie
 
-ARG USERNAME=bun
+ARG USERNAME=node
 
 RUN usermod -s /bin/bash ${USERNAME}
 
