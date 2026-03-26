@@ -2,4 +2,11 @@
 
 Sliding puzzle game using javascript
 
-![slide](./docs/images/screenshot1.png)
+
+Desktop:
+
+![desktop](./docs/images/screenshot1.jpeg)
+
+Mobile:
+
+![mobile](./docs/images/screenshot2.jpeg)
